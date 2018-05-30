@@ -273,107 +273,107 @@
       });
 
       // Leaflet MapBox of IPPs by Location Flag
-	var ippmap1 = L.map('mapbox1').setView([40.112, -104.828], 9);
+    	var ippmap1 = L.map('mapbox1').setView([40.112, -104.828], 9);
 
-	L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia3Jpc3RpbnN3YWltIiwiYSI6ImNpc3Rjcnl3bDAzYWMycHBlM2phbDJuMHoifQ.vrDCYwkTZsrA_0FffnzvBw', {
-		maxZoom: 18,
-		attribution: 'Created by the <a href="http://openwaterfoundation.org">Open Water Foundation. </a>' + 
-		'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-		id: 'mapbox.outdoors'
-	}).addTo(ippmap1);
+    	L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia3Jpc3RpbnN3YWltIiwiYSI6ImNpc3Rjcnl3bDAzYWMycHBlM2phbDJuMHoifQ.vrDCYwkTZsrA_0FffnzvBw', {
+    		maxZoom: 18,
+    		attribution: 'Created by the <a href="http://openwaterfoundation.org">Open Water Foundation. </a>' + 
+    		'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+    			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+    			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    		id: 'mapbox.outdoors'
+    	}).addTo(ippmap1);
 		
 
-// Control that shows IPP info on hover -- creates an info box
-	var info = L.control();
+      // Control that shows IPP info on hover -- creates an info box
+      var info = L.control();
 
-	info.onAdd = function (ippmap1) {
-		this._div = L.DomUtil.create('div', 'info'); // Creates a div with a class named "info"
-		this.update();
-		return this._div;
-	};
+      info.onAdd = function (ippmap1) {
+      	this._div = L.DomUtil.create('div', 'info'); // Creates a div with a class named "info"
+      	this.update();
+      	return this._div;
+      };
 
-// Method used to update the control based on feature properties passed
-	info.update = function (props) {
-		this._div.innerHTML = '<h4>IPP</h4>' +  (props ?
-			'' + '<b>Name: </b>' + props.IPP_Name + '<br/>' + '<b>Description: </b>' + props.IPP_Description + '<br />' + '<b>IBCC Basin: </b>' + props.Basin + '<br />' +
-			'<b>Yield (acre-feet): </b>' + props.Yield + '<br />' + '<b>Estimated Cost: </b>' + props.Estimated_Cost + '<br />' + '<b>IPP Sponsor: </b>' + 
-			props.IPP_Sponsor + '<br />' + '<b>Website: </b>' + props.Website + '<br />' + '<b>Comment: </b>' + props.Comment			
-			: 'Hover on a circle');
-	};
-	info.addTo(ippmap1);
+      // Method used to update the control based on feature properties passed
+    	info.update = function (props) {
+    		this._div.innerHTML = '<h4>IPP</h4>' +  (props ?
+    			'' + '<b>Name: </b>' + props.IPP_Name + '<br/>' + '<b>Description: </b>' + props.IPP_Description + '<br />' + '<b>IBCC Basin: </b>' + props.Basin + '<br />' +
+    			'<b>Yield (acre-feet): </b>' + props.Yield + '<br />' + '<b>Estimated Cost: </b>' + props.Estimated_Cost + '<br />' + '<b>IPP Sponsor: </b>' + 
+    			props.IPP_Sponsor + '<br />' + '<b>Website: </b>' + props.Website + '<br />' + '<b>Comment: </b>' + props.Comment			
+    			: 'Hover on a circle');
+    	};
+    	info.addTo(ippmap1);
 
-// Highlight a node when it is hovered over on the map
-	function highlightFeature(e) {
-		var layer = e.target;
+      // Highlight a node when it is hovered over on the map
+    	function highlightFeature(e) {
+    		var layer = e.target;
 
-		layer.setStyle({
-			weight: 4,
-			color: '#252525',
-			dashArray: '',
-			fillOpacity: 0.7
-		});
+    		layer.setStyle({
+    			weight: 4,
+    			color: '#252525',
+    			dashArray: '',
+    			fillOpacity: 0.7
+    		});
 
-		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-			layer.bringToFront();
-		}
-		info.update(layer.feature.properties);
-	}
+    		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+    			layer.bringToFront();
+    		}
+    		info.update(layer.feature.properties);
+    	}
+    	
+    	var geojson1;
 	
-	var geojson1;
-	
-// Reset the color after hovering over
-	function resetHighlight(e) {
-		geojson1.resetStyle(e.target);
-		info.update();
-	} 	
-	
-	function onEachFeature(feature, layer) {
-		layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight
-		});
-	}
+      // Reset the color after hovering over
+    	function resetHighlight(e) {
+    		geojson1.resetStyle(e.target);
+    		info.update();
+    	} 	
+    	
+    	function onEachFeature(feature, layer) {
+    		layer.on({
+    			mouseover: highlightFeature,
+    			mouseout: resetHighlight
+    		});
+    	}
 
-	// Create function of color based on basin
-	function style1(feature) {
-	   var colorToUse1;
-	   var point = feature.properties.Lat_Long_Flag;
-	   
-	   return getColor1(point);
-	}
+    	// Create function of color based on basin
+    	function style1(feature) {
+    	   var colorToUse1;
+    	   var point = feature.properties.Lat_Long_Flag;
+    	   
+    	   return getColor1(point);
+    	}
 
-	function getColor1(point){
-		if (point === "g1") colorToUse1 = "red";
-	   else if (point === "g2") colorToUse1 = "orange";
-	   else if (point === "g3") colorToUse1 = "yellow";
-	   else if (point === "g4") colorToUse1 = "green";
-	   else if (point === "g5") colorToUse1 = "blue";
-	   else if (point === "g6") colorToUse1 = "purple";
-	   else if (point === "g7") colorToUse1 = "brown";
-	   else colorToUse1 = "black";
+    	function getColor1(point){
+    		if (point === "g1") colorToUse1 = "red";
+    	   else if (point === "g2") colorToUse1 = "orange";
+    	   else if (point === "g3") colorToUse1 = "yellow";
+    	   else if (point === "g4") colorToUse1 = "green";
+    	   else if (point === "g5") colorToUse1 = "blue";
+    	   else if (point === "g6") colorToUse1 = "purple";
+    	   else if (point === "g7") colorToUse1 = "brown";
+    	   else colorToUse1 = "black";
 
-	    return colorToUse1;
-	}
-	
-	geojson1 = L.geoJson(IPPs, {		
-		
-	pointToLayer: function(feature, latlng) {	
+    	    return colorToUse1;
+    	}
+    	
+    	geojson1 = L.geoJson(IPPs, {		
+    		
+    	pointToLayer: function(feature, latlng) {	
 
-		return L.circleMarker(latlng, { 
-				 fillColor: style1(feature),
-				 color: style1(feature),
-				 weight: 1, 
-				 radius: 5,
-				 fillOpacity: 0.8 
-			});
-		},
+    		return L.circleMarker(latlng, { 
+    				 fillColor: style1(feature),
+    				 color: style1(feature),
+    				 weight: 1, 
+    				 radius: 5,
+    				 fillOpacity: 0.8 
+    			});
+    		},
 
-		onEachFeature: onEachFeature
-	}).addTo(ippmap1);
-		
-	map.attributionControl.addAttribution('Data &copy; SWSI2010');
+    		onEachFeature: onEachFeature
+    	}).addTo(ippmap1);
+    		
+    	ippmap1.attributionControl.addAttribution('Data &copy; SWSI2010');
 	
 // Add a legend to the map
 var legend = L.control ({position: 'bottomright'});
@@ -468,7 +468,7 @@ var legend = L.control ({position: 'bottomright'});
 	}
 
 	function getColor2(point){
-		if (point === "South Platte") colorToUse = "blue";
+		 if (point === "South Platte") colorToUse2 = "blue";
 	   else colorToUse2 = "orange";
 
 	    return colorToUse2;
