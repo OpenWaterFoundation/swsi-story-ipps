@@ -510,7 +510,7 @@ var legend = L.control ({position: 'bottomright'});
 		onEachFeature: onEachFeature
 	}).addTo(ippmap2);
 		
-	map.attributionControl.addAttribution('Data &copy; SWSI2010');
+	ippmap2.attributionControl.addAttribution('Data &copy; SWSI2010');
 	
 // Add a legend to the map
 var legend = L.control ({position: 'bottomright'});
@@ -523,7 +523,7 @@ var legend = L.control ({position: 'bottomright'});
 		   
 		   for (var i = 0; i < categories.length; i++) {
 		        div.innerHTML +=
-				   '<i class="circle" style="background:' + getColor(categories[i]) + '"></i>  ' +
+				   '<i class="circle" style="background:' + getColor2(categories[i]) + '"></i>  ' +
 				   (labels[i] ? labels[i] + '<br>' : '+');
 		   }   
            return div;
