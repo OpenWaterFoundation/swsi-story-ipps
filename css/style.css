@@ -1,0 +1,54 @@
+iframe {
+	height:93vh;
+	width:100%;
+	margin-top:63px;
+	padding:2px;
+}
+
+.viz-row{
+	margin-left:20px; 
+	margin-right:0px; 
+	margin-bottom: 15px;
+}
+
+.text-right-custom{
+	padding:100px; 
+	padding-left:0px;
+}
+
+.text-left-custom{
+	padding:100px; 
+	padding-right:0px;
+}
+
+.custom-iframe-border {
+	border-style:solid;
+	border-width:1px;
+	border-color:#9B9FA6;
+	border-top:none;
+	border-bottom:none;
+}
+
+.map-full{
+	margin-top:60px;
+	margin-left:50px;
+	margin-right:50px;
+	width:95%;
+	height:87vh;
+}
+
+.map-left{
+	margin-top:60px;
+	margin-left:50px;
+	margin-right:50px;
+	width:95%;
+	height:87vh;
+}
+
+.map-right{
+
+}
+
+#fp-nav ul li .fp-tooltip{
+    color:black!important;
+}
