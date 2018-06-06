@@ -828,6 +828,7 @@ var legend = L.control ({position: 'bottomright'});
 
       // Method used to update the control based on feature properties passed
     	info.update = function (props) {
+        console.log('here')
     		this._div.innerHTML = '<h4>NISP</h4>' +  (props ?
     			'' + '<b>Water Provider: </b>' + props.WaterProviderName + '<br/>' + '<b>Permitted Yield (acre-feet): </b>' + props.Permitted_Yield		
     			: 'Hover on a circle');
@@ -856,7 +857,7 @@ var legend = L.control ({position: 'bottomright'});
       // Reset the color after hovering over
     	function resetHighlight(e) {
     		nispparties.resetStyle(e.target);
-    		info3.update();
+    		info.update();
     	} 	
     	
     	function onEachFeature(feature, layer) {
