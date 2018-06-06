@@ -5,6 +5,10 @@ iframe {
 	padding:2px;
 }
 
+.row{
+	padding-top:20px;
+}
+
 .viz-row{
 	margin-left:20px; 
 	margin-right:0px; 
@@ -12,13 +16,15 @@ iframe {
 }
 
 .text-right-custom{
-	padding:100px; 
+	/*padding:100px; */
 	padding-left:0px;
+	padding-right:25px;
 }
 
 .text-left-custom{
-	padding:100px; 
+	/*padding:100px; */
 	padding-right:0px;
+	padding-left:25px;
 }
 
 .custom-iframe-border {
@@ -38,9 +44,7 @@ iframe {
 }
 
 .map-left{
-	margin-top:60px;
-	margin-left:50px;
-	margin-right:50px;
+	margin:0px;
 	width:95%;
 	height:87vh;
 }
