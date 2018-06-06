@@ -19,7 +19,7 @@
 	<link href="css/custom-leaflet-style.css" rel="stylesheet">
 
     <!-- icon -->
-    <link id="czr-favicon" rel="icon" href="images/OWF-Logo-Favicon-32x32.png" type="image/png">
+    <link id="czr-favicon" rel="icon" href="images/co-triangle-favicon.ico" type="image/png">
 
     <!-- MapBox Leaflet -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
@@ -388,24 +388,24 @@
 		
 
 // Control that shows IPP info on hover -- creates an info box
-	var info = L.control();
+	var info0 = L.control();
 
-	info.onAdd = function (isfmap) {
+	info0.onAdd = function (isfmap) {
 		this._div = L.DomUtil.create('div', 'info'); // Creates a div with a class named "info"
 		this.update();
 		return this._div;
 	};
 
 // Method used to update the control based on feature properties passed
-	info.update = function (props) {
+	info0.update = function (props) {
 		this._div.innerHTML = '<h4>Instream Flow Right</h4>' +  (props ?
 			'' + '<b>Stream: </b>' + props.Name + '<br/>' + '<b>Miles of Stream: </b>' + props.MILES + '<br />' + '<b>ID: </b>' + props.ID		
 			: 'Hover on a stream segment');
 	};
-	info.addTo(isfmap);
+	info0.addTo(isfmap);
 
 // Highlight a node when it is hovered over on the map
-	function highlightFeature(e) {
+	function highlightFeature0(e) {
 		var layer = e.target;
 
 		layer.setStyle({
@@ -418,21 +418,21 @@
 		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
 			layer.bringToFront();
 		}
-		info.update(layer.feature.properties);
+		info0.update(layer.feature.properties);
 	}
 	
 	var isf;
 	
 // Reset the color after hovering over
-	function resetHighlight(e) {
+	function resetHighlight0(e) {
 		isf.resetStyle(e.target);
-		info.update();
+		info0.update();
 	} 	
 	
-	function onEachFeature(feature, layer) {
+	function onEachFeature0(feature, layer) {
 		layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight
+			mouseover: highlightFeature0,
+			mouseout: resetHighlight0
 		});
 	}
 // Create style for instream flow reaches
@@ -444,7 +444,7 @@
 // Add in instream flow layer			
 	isf = L.geoJson(isf, {			
       style: isfStyle,
-	  onEachFeature: onEachFeature	  
+	  onEachFeature: onEachFeature0	  
 	}).addTo(isfmap)
 	
 	isfmap.attributionControl.addAttribution("Data &copy; Colorado's Decision Support Systems");
@@ -464,26 +464,26 @@
 		
 
       // Control that shows IPP info on hover -- creates an info box
-      var info = L.control();
+      var info1 = L.control();
 
-      info.onAdd = function (ippmap1) {
+      info1.onAdd = function (ippmap1) {
       	this._div = L.DomUtil.create('div', 'info'); // Creates a div with a class named "info"
       	this.update();
       	return this._div;
       };
 
       // Method used to update the control based on feature properties passed
-    	info.update = function (props) {
+    	info1.update = function (props) {
     		this._div.innerHTML = '<h4>IPP</h4>' +  (props ?
     			'' + '<b>Name: </b>' + props.IPP_Name + '<br/>' + '<b>Description: </b>' + props.IPP_Description + '<br />' + '<b>IBCC Basin: </b>' + props.Basin + '<br />' +
     			'<b>Yield (acre-feet): </b>' + props.Yield + '<br />' + '<br />' + '<b>IPP Sponsor: </b>' + props.IPP_Sponsor + '<br />' + '<b>Website: </b>' 
 				+ props.Website + '<br />' + '<b>Comment: </b>' + props.Comment			
     			: 'Hover on a point');
     	};
-    	info.addTo(ippmap1);
+    	info1.addTo(ippmap1);
 
       // Highlight a node when it is hovered over on the map
-    	function highlightFeature(e) {
+    	function highlightFeature1(e) {
     		var layer = e.target;
 
     		layer.setStyle({
@@ -496,21 +496,21 @@
     		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
     			layer.bringToFront();
     		}
-    		info.update(layer.feature.properties);
+    		info1.update(layer.feature.properties);
     	}
     	
     	var geojson1;
 	
       // Reset the color after hovering over
-    	function resetHighlight(e) {
+    	function resetHighlight1(e) {
     		geojson1.resetStyle(e.target);
-    		info.update();
+    		info1.update();
     	} 	
     	
-    	function onEachFeature(feature, layer) {
+    	function onEachFeature1(feature, layer) {
     		layer.on({
-    			mouseover: highlightFeature,
-    			mouseout: resetHighlight
+    			mouseover: highlightFeature1,
+    			mouseout: resetHighlight1
     		});
     	}
 
@@ -548,7 +548,7 @@
     			});
     		},
 
-    		onEachFeature: onEachFeature
+    		onEachFeature: onEachFeature1
     	}).addTo(ippmap1);
     		
     	ippmap1.attributionControl.addAttribution('Data &copy; SWSI2010');
@@ -587,25 +587,25 @@ var legend = L.control ({position: 'bottomright'});
 		
 
 // Control that shows IPP info on hover -- creates an info box
-	var info = L.control();
+	var info2 = L.control();
 
-	info.onAdd = function (ippmap2) {
+	info2.onAdd = function (ippmap2) {
 		this._div = L.DomUtil.create('div', 'info'); // Creates a div with a class named "info"
 		this.update();
 		return this._div;
 	};
 
 // Method used to update the control based on feature properties passed
-	info.update = function (props) {
+	info2.update = function (props) {
 		this._div.innerHTML = '<h4>IPP</h4>' +  (props ?
 			'' + '<b>Name: </b>' + props.IPP_Name + '<br/>' + '<b>Description: </b>' + props.IPP_Description + '<br />' + '<b>IBCC Basin: </b>' + props.Basin + '<br />' +
 			'<b>Yield (acre-feet): </b>' + props.Yield			
 			: 'Hover on a point');
 	};
-	info.addTo(ippmap2);
+	info2.addTo(ippmap2);
 
 // Highlight a node when it is hovered over on the map
-	function highlightFeature(e) {
+	function highlightFeature2(e) {
 		var layer = e.target;
 
 		layer.setStyle({
@@ -618,21 +618,21 @@ var legend = L.control ({position: 'bottomright'});
 		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
 			layer.bringToFront();
 		}
-		info.update(layer.feature.properties);
+		info2.update(layer.feature.properties);
 	}
 	
 	var geojson2;
 	
 // Reset the color after hovering over
-	function resetHighlight(e) {
+	function resetHighlight2(e) {
 		geojson2.resetStyle(e.target);
-		info.update();
+		info2.update();
 	} 	
 	
-	function onEachFeature(feature, layer) {
+	function onEachFeature2(feature, layer) {
 		layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight
+			mouseover: highlightFeature2,
+			mouseout: resetHighlight2
 		});
 	}
 
@@ -683,7 +683,7 @@ var legend = L.control ({position: 'bottomright'});
 				 fillOpacity: 0.8 
 			});
 		},
-		onEachFeature: onEachFeature
+		onEachFeature: onEachFeature2
 	}).addTo(ippmap2);
 		
 	ippmap2.attributionControl.addAttribution('Data &copy; SWSI2010');
@@ -703,25 +703,25 @@ var legend = L.control ({position: 'bottomright'});
 		
 
 // Control that shows IPP info on hover -- creates an info box
-	var info = L.control();
+	var info3 = L.control();
 
-	info.onAdd = function (ippmap3) {
+	info3.onAdd = function (ippmap3) {
 		this._div = L.DomUtil.create('div', 'info'); // Creates a div with a class named "info"
 		this.update();
 		return this._div;
 	};
 
 // Method used to update the control based on feature properties passed
-	info.update = function (props) {
+	info3.update = function (props) {
 		this._div.innerHTML = '<h4>IPP</h4>' +  (props ?
 			'' + '<b>Name: </b>' + props.IPP_Name + '<br/>' + '<b>Description: </b>' + props.IPP_Description + '<br />' + '<b>IBCC Basin: </b>' + props.Basin + '<br />' +
 			'<b>Estimated Cost: </b>' + props.Estimated_Cost			
 			: 'Hover on a point');
 	};
-	info.addTo(ippmap3);
+	info3.addTo(ippmap3);
 
 // Highlight a node when it is hovered over on the map
-	function highlightFeature(e) {
+	function highlightFeature3(e) {
 		var layer = e.target;
 
 		layer.setStyle({
@@ -734,21 +734,21 @@ var legend = L.control ({position: 'bottomright'});
 		if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
 			layer.bringToFront();
 		}
-		info.update(layer.feature.properties);
+		info3.update(layer.feature.properties);
 	}
 	
 	var geojson3;
 	
 // Reset the color after hovering over
-	function resetHighlight(e) {
+	function resetHighlight3(e) {
 		geojson3.resetStyle(e.target);
-		info.update();
+		info3.update();
 	} 	
 	
-	function onEachFeature(feature, layer) {
+	function onEachFeature3(feature, layer) {
 		layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight
+			mouseover: highlightFeature3,
+			mouseout: resetHighlight3
 		});
 	}
 
@@ -798,7 +798,7 @@ var legend = L.control ({position: 'bottomright'});
 				 fillOpacity: 0.8 
 			});
 		},
-		onEachFeature: onEachFeature
+		onEachFeature: onEachFeature3
 	}).addTo(ippmap3);
 		
 	ippmap3.attributionControl.addAttribution('Data &copy; SWSI2010');
@@ -818,25 +818,25 @@ var legend = L.control ({position: 'bottomright'});
 		
 
       // Control that shows IPP info on hover -- creates an info box
-      var info = L.control();
+      var info4 = L.control();
 
-      info.onAdd = function (exampleipp1) {
+      info4.onAdd = function (exampleipp1) {
       	this._div = L.DomUtil.create('div', 'info'); // Creates a div with a class named "info"
       	this.update();
       	return this._div;
       };
 
       // Method used to update the control based on feature properties passed
-    	info.update = function (props) {
+    	info4.update = function (props) {
         console.log('here')
     		this._div.innerHTML = '<h4>NISP</h4>' +  (props ?
     			'' + '<b>Water Provider: </b>' + props.WaterProviderName + '<br/>' + '<b>Permitted Yield (acre-feet): </b>' + props.Permitted_Yield		
     			: 'Hover on a circle');
     	};
-    	info.addTo(exampleipp1);
+    	info4.addTo(exampleipp1);
 
       // Highlight a node when it is hovered over on the map
-    	function highlightFeature(e) {
+    	function highlightFeature4(e) {
     		var layer = e.target;
 
     		layer.setStyle({
@@ -855,15 +855,15 @@ var legend = L.control ({position: 'bottomright'});
     	var nispparties;
 	
       // Reset the color after hovering over
-    	function resetHighlight(e) {
+    	function resetHighlight4(e) {
     		nispparties.resetStyle(e.target);
-    		info.update();
+    		info4.update();
     	} 	
     	
-    	function onEachFeature(feature, layer) {
+    	function onEachFeature4(feature, layer) {
     		layer.on({
-    			mouseover: highlightFeature,
-    			mouseout: resetHighlight
+    			mouseover: highlightFeature4,
+    			mouseout: resetHighlight4
     		});
     	}
 		
@@ -881,7 +881,7 @@ var legend = L.control ({position: 'bottomright'});
     			});
     		},
 
-    		onEachFeature: onEachFeature
+    		onEachFeature: onEachFeature4
     	}).addTo(exampleipp1);
 		
 	 // Add in NISP reservoirs layer		
@@ -898,7 +898,7 @@ var legend = L.control ({position: 'bottomright'});
     			});
     		},
 
-    		onEachFeature: onEachFeature
+    		onEachFeature: onEachFeature4
     	}).addTo(exampleipp1);		
 
 	// Create line style for NISP canals
