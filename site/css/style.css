@@ -5,6 +5,16 @@ iframe {
 	padding:2px;
 }
 
+.image-text{
+	transform:translateY(600%);
+	padding-left:7%;
+}
+
+.image-centered{
+	position:inline-block;
+	transform:translate(10%,25%)
+}
+
 .row{
 	padding-top:20px;
 }

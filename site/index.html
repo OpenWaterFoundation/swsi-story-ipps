@@ -113,8 +113,8 @@
 			  </ul>
             </div>
 		    <div class="col-lg-6">
-              <img src="images/swsi2004-gap.png" frameborder="0"></img>
-			  <p>&copy; SWSI 2004, Figure ES-8: Effectiveness of IPPs in Meeting 2030 M&I and SSI Demands.</p>
+              <img class="image-centered" src="images/swsi2004-gap.png" frameborder="0"></img>
+			  <p class="image-text">&copy; SWSI 2004, Figure ES-8: Effectiveness of IPPs in Meeting 2030 M&I and SSI Demands.</p>
             </div>			
           </div>
         </div>
@@ -155,8 +155,8 @@
 			  basin.</p>
             </div>
 		    <div class="col-lg-5">
-              <img src="images/swsi2010-gap.png" frameborder="0"></img>
-			  <p>&copy; SWSI 2010, Figure ES-20: 2050 M&I and SSI Gap Analysis - Medium Gap Scenario.</p>
+              <img class="image-centered" src="images/swsi2010-gap.png" frameborder="0"></img>
+			  <p class="image-text">&copy; SWSI 2010, Figure ES-20: 2050 M&I and SSI Gap Analysis - Medium Gap Scenario.</p>
             </div>				
           </div>
         </div> 
@@ -828,10 +828,21 @@ var legend = L.control ({position: 'bottomright'});
 
       // Method used to update the control based on feature properties passed
     	info4.update = function (props) {
-        console.log('here')
-    		this._div.innerHTML = '<h4>NISP</h4>' +  (props ?
-    			'' + '<b>Water Provider: </b>' + props.WaterProviderName + '<br/>' + '<b>Permitted Yield (acre-feet): </b>' + props.Permitted_Yield		
-    			: 'Hover on a circle');
+        if(props && props.WaterProviderName){
+          this._div.innerHTML = '<h4>NISP</h4>' +  (props ?
+            '' + '<b>Water Provider: </b>' + props.WaterProviderName + '<br/>' + '<b>Permitted Yield (acre-feet): </b>' + props.Permitted_Yield   
+            : 'Hover on a circle');
+        }
+        else if(props && props.Capacity){
+          this._div.innerHTML = '<h4>NISP</h4>' +  (props ?
+            '' + '<b>Capacity: </b>' + props.Capacity + '<br/>' + '<b>Reservoir: </b>' + props.Reservoir 
+            : 'Hover on a circle');
+        }else{
+          this._div.innerHTML = '<h4>NISP</h4>' +  (props ?
+            '' + '<b>Name: </b>' + props.NAME
+            : 'Hover on a circle');
+        }
+    		
     	};
     	info4.addTo(exampleipp1);
 
@@ -903,13 +914,14 @@ var legend = L.control ({position: 'bottomright'});
 
 	// Create line style for NISP canals
 		var canalStyle = {
-			color: 'black',
-			weight: 2,
+			color: '#3989FC',
+			weight: 3,
 			opacity: 1
-			};
+		};
 	 // Add in NISP canals layer		
 		nispcanals = L.geoJSON(nispcanals, {
-		style: canalStyle
+		  style: canalStyle,
+      onEachFeature: onEachFeature4
 		}).addTo(exampleipp1);
 		
     	exampleipp1.attributionControl.addAttribution('Data &copy; Northern Colorado Water Conservancy District');	
