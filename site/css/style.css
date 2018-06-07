@@ -6,12 +6,13 @@ iframe {
 }
 
 .image-text{
-	transform:translateY(600%);
-	padding-left:7%;
+	/*transform:translateY(600%);
+	padding-left:7%;*/
 }
 
 .image-centered{
-	transform:translate(10%,25%)
+	/*transform:translate(10%,25%)*/
+	max-width:90%;
 }
 
 .row{
