@@ -201,7 +201,7 @@
         </div>		
           </div> 
         </div>
-	  </div>
+	  </div>	  
       <div class="section">
         <div class="container-fluid">
           <div class="row">
@@ -217,7 +217,7 @@
 			  would allow agricultural users to capture wet year flows and store them as drought reserve.</p>
 			  <p>It is recommended that IPPs should be categorized to clearly indicate agricultural benefit.</p>
             </div>
-            <div class="col-lg-7S">
+            <div class="col-lg-7">
               <img src="images/irrigated-acres-2050.png" frameborder="0"></img>
 			  <p><a href="https://www.colorado.gov/pacific/cowaterplan" target="_blank">Colorado Water Plan</a>, Figure 6.2-1: Potential Changes in Irrigated Acres by 2050.</p>			  
             </div>			
@@ -255,7 +255,7 @@
       <div class="section">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-7 text-left-custom">
+            <div class="col-lg-5 text-left-custom">
               <h2>IPPs Updated for SWSI Update and South Platte Data Platform</h2>
               <p>The <a href="http://cwcb.state.co.us/water-management/water-supply-planning/Pages/SWSIUpdate.aspx" target="_blank">SWSI Update</a> project is 
 			  currently updating the SWSI 2010 study using new data and methodologies, with expected completion in 2019.  The Open Water Foundation also received a CWCB grant 
@@ -280,7 +280,7 @@
 			  data, such as yield or cost.  The primary exception was the determination of a general location for each IPP, which OWF estimated in order to create the maps 
               that follow.</p>
             </div>
-		    <div class="col-lg-5">
+		    <div class="col-lg-7">
               <img class="image-centered" src="images/swsiupdate-ipp-workflow.png" frameborder="0"></img>
 			  <p class="image-text">Draft IPP Dataset Review and Recommendations, Figure 1: IPP Dataset Handling Workflow.</p>
             </div>				
@@ -716,9 +716,12 @@
 
 // Method used to update the control based on feature properties passed
 	info2.update = function (props) {
+	    if(props){
+           var yield = (props.Yield) ? props.Yield.toLocaleString() : ""; 
+           }
 		this._div.innerHTML = '<h5>IPP</h5>' +  (props ?
 			'' + '<b>Name: </b>' + props.IPP_Name + '<br/>' + '<b>Description: </b>' + props.IPP_Description + '<br />' + '<b>IBCC Basin: </b>' + props.Basin + '<br />' +
-			'<b>Yield (acre-feet): </b>' + props.Yield.toLocaleString()			
+			'<b>Yield (acre-feet): </b>' + yield		
 			: 'Hover on a point');
 	};
 	info2.addTo(ippmap2);
@@ -837,8 +840,8 @@
         i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
         j = (j = i.length) > 3 ? j % 3 : 0;
        return s + '$' + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
-};
-		
+        };
+				
   // Control that shows IPP info on hover -- creates an info box
 	var info3 = L.control();
 
@@ -850,11 +853,14 @@
 
   // Method used to update the control based on feature properties passed
 	info3.update = function (props) {
+	       if(props){
+           var estimatedCost = (props.Estimated_Cost) ? props.Estimated_Cost.formatMoney(0) : ""; 
+           }
 		this._div.innerHTML = '<h5>IPP</h5>' +  (props ?
 			'' + '<b>Name: </b>' + props.IPP_Name + '<br/>' + '<b>Description: </b>' + props.IPP_Description + '<br />' + '<b>IBCC Basin: </b>' + props.Basin + '<br />' +
-			'<b>Estimated Cost: </b>' + props.Estimated_Cost.formatMoney(0)			
+			'<b>Estimated Cost: </b>' + estimatedCost
 			: 'Hover on a point');
-	};
+	    };
 	info3.addTo(ippmap3);
 
 // Highlight a node when it is hovered over on the map
