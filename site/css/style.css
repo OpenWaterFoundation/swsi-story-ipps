@@ -32,10 +32,6 @@ iframe {
     }
 }
 
-.image-centered{
-	max-width:90%;
-}
-
 .row{
 	padding-top:20px;
 }
@@ -95,6 +91,17 @@ iframe {
 	width:94%;
 	height:80vh;
 	margin-left:10px;
+}
+
+.side-content{
+	text-align: center;
+}
+
+.side-content img{
+	max-width:90%;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
 }
 
 #fp-nav ul li .fp-tooltip{
