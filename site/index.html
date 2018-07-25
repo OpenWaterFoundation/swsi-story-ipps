@@ -10,35 +10,45 @@
 
     <title>South Platte and Metro basin IPPs</title>
 
+    <!-- Colorado triangle favicon -->
+    <link id="czr-favicon" rel="icon" href="images/co-triangle-favicon.ico"/>
+
+    <!-- Custom style -->
+    <link href="css/style.css" rel="stylesheet"/>
+    <!-- Custom leaflet style added -->
+    <link href="css/custom-leaflet-style.css" rel="stylesheet"/>
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap-4.0.0.css" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="css/jquery.fullpage-2.9.7.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/custom-leaflet-style.css" rel="stylesheet">
-    <!-- icon -->
-    <link id="czr-favicon" rel="icon" href="images/co-triangle-favicon.ico" type="image/png">
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css"
-    integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
-    crossorigin=""/>
+    <link href="css/bootstrap-4.0.0.css" rel="stylesheet"/>
+    <!-- Font Awesome Used in newest version of bootstrap for icons -->
+    <link href="css/fontawesome-all-5.1.1.min.css" rel="stylesheet"/> 
+    <!-- Stylesheet for fullpage version 3.0.0 -->
+    <link href="css/jquery.fullpage-3.0.0.min.css" rel="stylesheet"/>
+    <!-- Stylesheet for mapbox -->
+    <!--<link href='css/mapbox-gl-0.47.0.css' rel='stylesheet' />-->
+    <!-- Stylesheet for leaflet -->
+    <link href="css/leaflet-1.3.3.css" rel="stylesheet" />
+    <!-- Style for jBox library -->
+    <link href="css/jBox-0.4.9.css" rel="stylesheet"/>
+    <!-- Maps style -->
+    <link href="css/map.css" rel="stylesheet"/>
 
+    <!---------------------------------------------------------------------->
+
+    <!-- JavaScript Files -->
     <!-- MapBox Leaflet -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
-    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
-    integrity="sha512-/Nsx9X4HebavoBvEBuyp3I7od5tA0UzAxs+j83KgC8PU0kgB4XiK4Lfe4y4cgBtaRJQEIFCW+oC506aPT2L1zw=="
-    crossorigin=""></script>
-
-     <!-- JQuery JavaScript -->
+    <!--<script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>-->
+    <script src="js/leaflet-1.3.3.js"></script>
+    <!-- JQuery JavaScript -->
     <script src="js/jquery-3.3.1.js"></script>
     <!-- Fullpage minified Javscript file -->
-    <script type="text/javascript" src="js/jquery.fullpage-2.9.7.min.js"></script>
+    <script src="js/jquery.fullpage-3.0.0.js"></script>
     <!-- Fullpage minified Javscript file -->
-    <script type="text/javascript" src="js/scrolloverflow-0.0.8.min.js"></script>
+    <script src="js/scrolloverflow-0.0.8.min.js"></script>
     <!-- Bootstrap Javascript File -->
-    <script type="text/javascript" src="js/bootstrap-4.0.0.js"></script>
-    <!-- Leaflet GeoPackage Javascript File -->
-    <script type="text/javascript" src="js/leaflet-geopackage-1.1.3.js"></script>
+    <script src="js/bootstrap-4.0.0.js"></script>
+    <!-- jBox for tooltips -->
+    <script src="js/jBox-0.4.9.min.js"></script>
+
     <!-- IPP dataset -->
     <script src="data/SouthPlatteMetro-IPPs.geojson"></script>
     <!-- NISP files (data for creating maps) -->
@@ -55,6 +65,21 @@
     <script src="data/Northern-Pipeline.geojson"></script>  
 
   </head>
+
+  <script>
+    /* Use jBox for popups on maps */
+    /* This jBox popup is used in mapfiles */
+    var mousetooltip;
+    $(window).bind("load", function(){
+      mousetooltip = new jBox('Tooltip', {
+        attach: '.scrollbutton-tooltip',
+        position: {
+          y:'bottom'
+        },
+        content: "Click to toggle mouse scroll wheel behavior.<br> [ x ] Mouse scroll pages forward/back. <br> [ &nbsp; ] Mouse scroll zooms map."
+     });
+    })
+  </script>
 
   <body>
 
@@ -126,7 +151,7 @@
       <div class="section">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-6 text-left-custom">
+            <div class="col-lg-6 text-left-custom custom-scroll">
               <h2>IPP Background: SWSI 2004</h2>
               <p>The <a href="http://cwcbweblink.state.co.us/WebLink/ElectronicFile.aspx?docid=144066&searchid=2c16c041-d0b2-4ec5-ac42-8b95aa0c04e3&dbid=0" 
                 target="_blank">Statewide Water Supply Initiative (SWSI)</a>, first completed in 2004, was a comprehensive analysis of 
@@ -170,7 +195,7 @@
       <div class="section">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-6 text-left-custom">
+            <div class="col-lg-6 text-left-custom custom-scroll">
               <h2>IPP Background: SWSI 2010 Municipal & Industrial IPPs</h2>
               <p><a href="http://cwcb.state.co.us/water-management/water-supply-planning/Pages/SWSI2010.aspx" target="_blank">SWSI 2010</a> updated 
                 the SWSI 2004 study. Key elements of the update were:</p>  
@@ -211,7 +236,7 @@
       <div class="section">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-5 text-left-custom">
+            <div class="col-lg-5 text-left-custom custom-scroll">
               <h2>IPP Background: SWSI 2010 Environmental & Recreational IPPs</h2>
                <p>A different approach was taken for environmental and recreational (E&R, also called nonconsumptive) IPPs.  Each basin roundtable 
                  described focus areas that represented where Colorado's important E&R attributes are located, such as species.  The focus area maps 
@@ -264,7 +289,7 @@
       <div class="section">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-5 text-left-custom">
+            <div class="col-lg-5 text-left-custom custom-scroll">
               <h2>South Platte & Metro BIP and Agricultural IPPs</h2>
               <p>As indicated in the figure to the right, irrigated acreage in the South Platte Basin is projected to decline by 2050 due to 
                 reallocation of agricultural water supplies to municipal and industrial uses.  However, IPPs specific to agricultural needs were not 
@@ -292,7 +317,7 @@
 
       <div class="section">
         <div class="row">
-          <div class="col-lg-4 text-left-custom">
+          <div class="col-lg-4 text-left-custom custom-scroll">
             <h2>South Platte & Metro BIP and Environmental & Recreational IPPs</h2>
             <p>Appendix D of the 2015 <a href="https://www.colorado.gov/pacific/sites/default/files/SouthPlatteBasinImplementationPlan-04172015.pdf" 
               target="_blank" style="color:yellow;">BIP</a> (Environmental and Recreational Assessment Methodology and Framework) provides a list of 
@@ -327,7 +352,7 @@
       <div class="section">
         <div class="container-fluid">
           <div class="row">
-            <div class="col-lg-5 text-left-custom">
+            <div class="col-lg-5 text-left-custom custom-scroll">
               <h2>IPPs Updated for SWSI Update and South Platte Data Platform</h2>
               <p>The <a href="http://cwcb.state.co.us/water-management/water-supply-planning/Pages/SWSIUpdate.aspx" target="_blank">SWSI Update</a> project 
                 is currently updating the SWSI 2010 study using new data and methodologies, with expected completion in 2019.  The Open Water Foundation also 
@@ -367,7 +392,7 @@
 
       <div class="section">
         <div class="row">
-          <div class="col-lg-4 text-left-custom">
+          <div class="col-lg-4 text-left-custom custom-scroll">
             <h3>IPPs by Location Flag</h3>
             <p>The existing South Platte/Metro IPP dataset did not have location data for IPP projects.  Thus, it was necessary to estimate general locations. 
               This map displays municipal and industrial (M&I) IPPs for both the South Platte and Metro basins.  IPPs are color-coded by the technique used to 
@@ -399,7 +424,7 @@
 
       <div class="section">
         <div class="row">
-          <div class="col-lg-4 text-left-custom">
+          <div class="col-lg-4 text-left-custom custom-scroll">
             <h3>IPPs by Basin and Yield</h3>
             <p>This map displays municipal and industrial (M&I) IPPs for both the South Platte (blue) and Metro (orange) basins. IPPs are sized according to 
               yield (acre-feet), if available.  One acre-foot is the amount of water that will cover one acre to a depth of one foot.</p>
@@ -426,7 +451,7 @@
 
       <div class="section">
         <div class="row">
-          <div class="col-lg-4 text-left-custom">
+          <div class="col-lg-4 text-left-custom custom-scroll">
             <h3>IPPs by Basin and Cost</h3>
             <p>This map displays municipal and industrial (M&I) IPPs for both the South Platte (blue) and Metro (orange) basins.
               IPPs are sized according to estimated IPP project total cost.</p>
@@ -451,7 +476,7 @@
 
       <div class="section">
         <div class="row">
-          <div class="col-lg-4 text-left-custom">
+          <div class="col-lg-4 text-left-custom custom-scroll">
             <h3>Example IPP:  NISP</h3>
             <p>The <a href="http://www.northernwater.org/sf/WaterProjects/NISP" target="_blank">Northern Integrated Supply Project</a>, or NISP, 
                is an example of a multi-purpose storage project.  NISP is coordinated by the <a href="http://www.northernwater.org/sf" target="_blank">
@@ -487,7 +512,7 @@
 
       <div class="section">
         <div class="row">
-          <div class="col-lg-4 text-left-custom">
+          <div class="col-lg-4 text-left-custom custom-scroll">
             <h3>Example IPP:  ACWWA Flow Project</h3>
             <p>The <a href="https://acwwa.com/27/ACWWA-Flow" target="_blank">Arapahoe County Water and Wastewater Authority (ACWWA) Flow Project</a> 
                is an example of a project to reduce the use of non-renewable groundwater supplies.  The ACWWA Flow Project will provide an annual average 
@@ -571,6 +596,7 @@
 
     $(document).ready(function() {
       $('#fullpage').fullpage({
+        licenseKey: "OPEN-SOURCE-GPLV3-LICENSE",
         anchors:['top','swsi2004','swsi2010mandi', 'swsi2010eandr', 'mandi', 'ag', 'eandr', 'ippupdate', 'ippmap1', 'ippmap2', 'ippmap3', 'exampleipp1', 'exampleipp2', 'resources', 'sources'],
         sectionsColor:['#386981','#c3c5bf','#c3c5bf','#c3c5bf','#9DB66B','#fef0d9','#009dbe','#c3c5bf','#c3c5bf','#c3c5bf','#c3c5bf','#c3c5bf','#c3c5bf','#386981','#386981'],
         navigation:true,
