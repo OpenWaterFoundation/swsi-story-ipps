@@ -1,8 +1,8 @@
 //Example IPP map one. Placed on the page titled "Example IPP: NISP".
 //id='mapbox5'
-(function(){
+var example_ipp_map_01 = (function(){
 	// Leaflet MapBox of NISP
-	var map = L.map('mapbox5').setView([40.312, -104.528], 9);
+	var map = L.map('mapbox5', {scrollWheelZoom:false}).setView([40.312, -104.528], 9);
 
 	L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=' +
 		'pk.eyJ1Ijoia3Jpc3RpbnN3YWltIiwiYSI6ImNpc3Rjcnl3bDAzYWMycHBlM2phbDJuMHoifQ.vrDCYwkTZsrA_0FffnzvBw', 
@@ -121,5 +121,33 @@
     	nisppartiesLayer.resetStyle(e.target);
     	info.update();
     } 	
+
+    // Add a scroll button to the map
+	var scrollbutton = L.control({position: 'topleft'});
+	scrollbutton.onAdd = function (map) {
+		var div = L.DomUtil.create('div', 'scrollbutton');
+		div.innerHTML = "<image id='scrollbutton' src='images/mouse.svg' class='scrollbutton-tooltip'" +
+						" style='width:20px; cursor:pointer;' onclick='example_ipp_map_01.scrollButtonClickFunction()'></image>";
+		return div;
+	};
+	scrollbutton.addTo(map);		
+	function scrollButtonClick(){
+	 	if (map.scrollWheelZoom.enabled()) {
+	    	map.scrollWheelZoom.disable();
+	    	var title = "Click to toggle mouse scroll wheel behavior.<br> [ x ] Mouse scroll pages forward/back. <br> [ &nbsp; ] Mouse scroll zooms map."
+			mousetooltip.setContent(title)
+	  	}
+	  	else {
+	    	map.scrollWheelZoom.enable();
+	    	var title = "Click to toggle mouse scroll wheel behavior.<br> [ &nbsp; ] Mouse scroll pages forward/back. <br> [ x ] Mouse scroll zooms map."
+			mousetooltip.setContent(title)
+	    }
+	}
+
+   	// Return function that need to be accessed by the DOM 
+	return{
+		scrollButtonClickFunction: scrollButtonClick,
+		maplayer: map
+	}
 
 })();

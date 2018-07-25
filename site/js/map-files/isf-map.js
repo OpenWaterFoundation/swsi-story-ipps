@@ -1,6 +1,6 @@
 //Instream Flow map that is placed on the page "South Platte & Metro BIP and Environmental & Recreational IPPs"
 //id='mapbox1'
-(function(){
+var isf_map = (function(){
 	// Leaflet Mapbox of decreed instream flow reaches
 	var map = L.map('mapbox1').setView([39.612, -105.028], 8);
 
@@ -80,4 +80,32 @@
 
 
 	map.attributionControl.addAttribution("Data &copy; Colorado's Decision Support Systems");
+
+	// Add a scroll button to the map
+    var scrollbutton = L.control({position: 'topleft'});
+    scrollbutton.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'scrollbutton');
+        div.innerHTML = "<image id='scrollbutton' src='images/mouse.svg' class='scrollbutton-tooltip'" +
+                        " style='width:20px; cursor:pointer;' onclick='isf_map.scrollButtonClickFunction()'></image>";
+        return div;
+    };
+    scrollbutton.addTo(map);        
+    function scrollButtonClick(){
+        if (map.scrollWheelZoom.enabled()) {
+            map.scrollWheelZoom.disable();
+            var title = "Click to toggle mouse scroll wheel behavior.<br> [ x ] Mouse scroll pages forward/back. <br> [ &nbsp; ] Mouse scroll zooms map."
+            mousetooltip.setContent(title)
+        }
+        else {
+            map.scrollWheelZoom.enable();
+            var title = "Click to toggle mouse scroll wheel behavior.<br> [ &nbsp; ] Mouse scroll pages forward/back. <br> [ x ] Mouse scroll zooms map."
+            mousetooltip.setContent(title)
+        }
+    }
+
+    // Return function that need to be accessed by the DOM 
+    return{
+        scrollButtonClickFunction: scrollButtonClick,
+        maplayer: map
+    }
 })();
