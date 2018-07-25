@@ -33,11 +33,12 @@ iframe {
 }
 
 .blue-bkgd-text a:link{
-   color:#59b3d3;
+   color:#F4EDEE;
+   text-decoration: underline;
 }
 
 .blue-bkgd-text a:visited{
-   color:#16151C;
+   color:#F4EDEE;
 }
 
 @media(max-width:1200px) {
@@ -101,11 +102,21 @@ iframe {
 }
 
 .text-image-overlay{
-	background-color:rgba(70,70,70,.3);
+	background-color:rgba(70,70,70,.8);
 	border-radius:10px;
 	max-height: 80vh;
 	overflow: auto;
-	margin-top:-15px!important;
+	color:white;
+	font-size:18px;
+}
+
+.text-image-overlay a{
+	color:white;
+	text-decoration: underline;
+}
+
+.text-image-overlay a:hover{
+	color:white;
 }
 
 .text-image-overlay::-webkit-scrollbar{
