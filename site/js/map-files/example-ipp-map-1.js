@@ -4,7 +4,7 @@ var example_ipp_map_01 = (function(){
 	// Leaflet MapBox of NISP
 	var map = L.map('mapbox5', {scrollWheelZoom:false}).setView([40.312, -104.528], 9);
 
-	L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=' +
+	var outdoors = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{z}/{x}/{y}?access_token=' +
 		'pk.eyJ1Ijoia3Jpc3RpbnN3YWltIiwiYSI6ImNpc3Rjcnl3bDAzYWMycHBlM2phbDJuMHoifQ.vrDCYwkTZsrA_0FffnzvBw', 
 	{
 		maxZoom: 18,
@@ -13,7 +13,53 @@ var example_ipp_map_01 = (function(){
 			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
 		id: 'mapbox.outdoors'
-	}).addTo(map);
+	});
+
+	outdoors.addTo(map);
+
+	var satellite = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoia3Jpc3RpbnN3YWltIiwiYSI6ImNpc3Rjcnl3bDAzYWMycHBlM2phbDJuMHoifQ.vrDCYwkTZsrA_0FffnzvBw', {
+		maxZoom: 18,
+		attribution: 'Created by the <a href="http://openwaterfoundation.org">Open Water Foundation. </a>' + 
+		'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		id: 'mapbox.satellite'
+	});	
+
+	var streets = L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/streets-v10/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia3Jpc3RpbnN3YWltIiwiYSI6ImNpc3Rjcnl3bDAzYWMycHBlM2phbDJuMHoifQ.vrDCYwkTZsrA_0FffnzvBw', {
+		maxZoom: 18,
+		attribution: 'Created by the <a href="http://openwaterfoundation.org">Open Water Foundation. </a>' + 
+		'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		id: 'mapbox.streets'
+	});
+
+	var baseMaps = {
+		"Outdoors": outdoors,
+		"Satellite": satellite,
+		"Streets": streets
+	}
+		
+	L.control.layers(baseMaps).addTo(map);
+
+	/* Bottom Right corner. This shows the current lat and long
+	of the mouse cursor.
+	'º' used for the degree character when the latitude and longitude of the
+	cursor is dispalyed. */
+	L.control.mousePosition({position: 'bottomright',lngFormatter: function(num) {
+			var direction = (num < 0) ? 'W' : 'E';
+			var formatted = Math.abs(L.Util.formatNum(num, 6)) + 'º ' + direction;
+			return formatted;
+	},
+	latFormatter: function(num) {
+			var direction = (num < 0) ? 'S' : 'N';
+			var formatted = Math.abs(L.Util.formatNum(num, 6)) + 'º ' + direction;
+			return formatted;
+	}}).addTo(map);
+	/* Bottom Right corner. This shows the scale in km and miles of
+	the map. */
+	L.control.scale({position: 'bottomright',imperial: true}).addTo(map);
 
   	// Add Northern Water boundary to map
    	ncwcd = L.geoJson(ncwcd, {
