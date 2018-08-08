@@ -35,6 +35,15 @@ var example_ipp_map_02 = (function(){
 		id: 'mapbox.streets'
 	});
 
+	var streetsatellite = L.tileLayer('https://api.mapbox.com/v4/mapbox.streets-satellite/{z}/{x}/{y}.png?access_token=pk.eyJ1Ijoia3Jpc3RpbnN3YWltIiwiYSI6ImNpc3Rjcnl3bDAzYWMycHBlM2phbDJuMHoifQ.vrDCYwkTZsrA_0FffnzvBw', {
+		maxZoom: 18,
+		attribution: 'Created by the <a href="http://openwaterfoundation.org">Open Water Foundation. </a>' + 
+		'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
+			'<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="http://mapbox.com">Mapbox</a>',
+		id: 'mapbox.streets-satellite'
+	});
+
 	// Add a scroll button to the map
 	var scrollbutton = L.control({position: 'topleft'});
 	scrollbutton.onAdd = function (map) {
@@ -57,11 +66,12 @@ var example_ipp_map_02 = (function(){
 	    }
 	}
 
-	var baseMaps = {
-		"Outdoors": outdoors,
-		"Satellite": satellite,
-		"Streets": streets
-	}
+    var baseMaps = {
+        "Outdoors": outdoors,
+        "Satellite": satellite,
+        "Streets": streets,
+        "Streets & Satellite": streetsatellite
+    }
 		
 	L.control.layers(baseMaps, null, {position:'topleft'}).addTo(map);
 
