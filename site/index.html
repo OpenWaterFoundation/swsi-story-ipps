@@ -82,6 +82,15 @@
         },
         content: "Click to toggle mouse scroll wheel behavior.<br> [ x ] Mouse scroll pages forward/back. <br> [ &nbsp; ] Mouse scroll zooms map."
      });
+
+      var title = "Click to toggle mouse scroll wheel behavior.<br> [ x ] Mouse scroll pages forward/back. <br> [ &nbsp; ] Mouse scroll zooms map."
+      mousetooltip.setContent(title)
+      if(typeof example_ipp_map_01 != "undefined"){ example_ipp_map_01.maplayer.scrollWheelZoom.disable(); }
+      if(typeof example_ipp_map_02 != "undefined"){ example_ipp_map_02.maplayer.scrollWheelZoom.disable(); }
+      if(typeof ipp_map_01 != "undefined"){ ipp_map_01.maplayer.scrollWheelZoom.disable(); }
+      if(typeof ipp_map_02 != "undefined"){ ipp_map_02.maplayer.scrollWheelZoom.disable(); }
+      if(typeof ipp_map_03 != "undefined"){ ipp_map_03.maplayer.scrollWheelZoom.disable(); }
+      if(typeof isf_map != "undefined"){ isf_map.maplayer.scrollWheelZoom.disable(); }
     })
   </script>
 
