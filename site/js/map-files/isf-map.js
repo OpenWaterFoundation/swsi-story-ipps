@@ -35,13 +35,35 @@ var isf_map = (function(){
 		id: 'mapbox.streets'
 	});
 
+	// Add a scroll button to the map
+    var scrollbutton = L.control({position: 'topleft'});
+    scrollbutton.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'scrollbutton');
+        div.innerHTML = "<image id='scrollbutton' src='images/mouse.svg' class='scrollbutton-tooltip'" +
+                        " style='width:20px; cursor:pointer;' onclick='isf_map.scrollButtonClickFunction()'></image>";
+        return div;
+    };
+    scrollbutton.addTo(map);        
+    function scrollButtonClick(){
+        if (map.scrollWheelZoom.enabled()) {
+            map.scrollWheelZoom.disable();
+            var title = "Click to toggle mouse scroll wheel behavior.<br> [ x ] Mouse scroll pages forward/back. <br> [ &nbsp; ] Mouse scroll zooms map."
+            mousetooltip.setContent(title)
+        }
+        else {
+            map.scrollWheelZoom.enable();
+            var title = "Click to toggle mouse scroll wheel behavior.<br> [ &nbsp; ] Mouse scroll pages forward/back. <br> [ x ] Mouse scroll zooms map."
+            mousetooltip.setContent(title)
+        }
+    }
+
 	var baseMaps = {
 		"Outdoors": outdoors,
 		"Satellite": satellite,
 		"Streets": streets
 	}
 		
-	L.control.layers(baseMaps).addTo(map);
+	L.control.layers(null, baseMaps, {position: 'topleft'}).addTo(map);
 
 	/* Bottom Right corner. This shows the current lat and long
 	of the mouse cursor.
@@ -126,28 +148,6 @@ var isf_map = (function(){
 
 
 	map.attributionControl.addAttribution("Data &copy; Colorado's Decision Support Systems");
-
-	// Add a scroll button to the map
-    var scrollbutton = L.control({position: 'topleft'});
-    scrollbutton.onAdd = function (map) {
-        var div = L.DomUtil.create('div', 'scrollbutton');
-        div.innerHTML = "<image id='scrollbutton' src='images/mouse.svg' class='scrollbutton-tooltip'" +
-                        " style='width:20px; cursor:pointer;' onclick='isf_map.scrollButtonClickFunction()'></image>";
-        return div;
-    };
-    scrollbutton.addTo(map);        
-    function scrollButtonClick(){
-        if (map.scrollWheelZoom.enabled()) {
-            map.scrollWheelZoom.disable();
-            var title = "Click to toggle mouse scroll wheel behavior.<br> [ x ] Mouse scroll pages forward/back. <br> [ &nbsp; ] Mouse scroll zooms map."
-            mousetooltip.setContent(title)
-        }
-        else {
-            map.scrollWheelZoom.enable();
-            var title = "Click to toggle mouse scroll wheel behavior.<br> [ &nbsp; ] Mouse scroll pages forward/back. <br> [ x ] Mouse scroll zooms map."
-            mousetooltip.setContent(title)
-        }
-    }
 
     // Return function that need to be accessed by the DOM 
     return{
