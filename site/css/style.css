@@ -178,6 +178,10 @@ iframe {
 	text-align: center;
 }
 
+.side-content p img{
+	display: inline;
+}
+
 .side-content img{
 	max-width:90%;
 	display:block;
