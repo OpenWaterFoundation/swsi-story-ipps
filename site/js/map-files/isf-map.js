@@ -69,7 +69,7 @@ var isf_map = (function(){
 	of the mouse cursor.
 	'º' used for the degree character when the latitude and longitude of the
 	cursor is dispalyed. */
-	L.control.mousePosition({position: 'bottomright',lngFormatter: function(num) {
+	L.control.mousePosition({position: 'bottomleft',lngFormatter: function(num) {
 			var direction = (num < 0) ? 'W' : 'E';
 			var formatted = Math.abs(L.Util.formatNum(num, 6)) + 'º ' + direction;
 			return formatted;
@@ -81,7 +81,7 @@ var isf_map = (function(){
 	}}).addTo(map);
 	/* Bottom Right corner. This shows the scale in km and miles of
 	the map. */
-	L.control.scale({position: 'bottomright',imperial: true}).addTo(map);
+	L.control.scale({position: 'bottomleft',imperial: true}).addTo(map);
 
 	// Add in IBCC basin boundaries
 	var basin = L.geoJson(basins, {
