@@ -63,7 +63,7 @@ var example_ipp_map_02 = (function(){
 		"Streets": streets
 	}
 		
-	L.control.layers(null, baseMaps, {position:'topleft'}).addTo(map);
+	L.control.layers(baseMaps, null, {position:'topleft'}).addTo(map);
 
 	/* Bottom Right corner. This shows the current lat and long
 	of the mouse cursor.
