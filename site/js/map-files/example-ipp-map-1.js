@@ -138,7 +138,7 @@ var example_ipp_map_01 = (function(){
     				 fillOpacity: 0.8 
     			});
     		},
-    		onEachFeature: onEachFeature
+    		onEachFeature: onEachFeature1
     }).addTo(map);
 		
 	// Add in NISP reservoirs layer		
@@ -152,7 +152,7 @@ var example_ipp_map_01 = (function(){
     				 fillOpacity: 0.8 
     			});
     		},
-    		onEachFeature: onEachFeature
+    		onEachFeature: onEachFeature2
     }).addTo(map);		
 
 	// Create line style for NISP canals
@@ -165,7 +165,7 @@ var example_ipp_map_01 = (function(){
 	// Add in NISP canals layer		
 	var nispcanalsLayer = L.geoJSON(nispcanals, {
 		style: canalStyle,
-      	onEachFeature: onEachFeature
+      	onEachFeature: onEachFeature3
 	}).addTo(map);
 		
     map.attributionControl.addAttribution('Data &copy; Northern Colorado Water Conservancy District');	
@@ -187,18 +187,44 @@ var example_ipp_map_01 = (function(){
 		info.update(layer.feature.properties);
     }
 
-    function onEachFeature(feature, layer) {
+    function onEachFeature1(feature, layer) {
     	layer.on({
     		mouseover: highlightFeature,
-    		mouseout: resetHighlight
+    		mouseout: resetHighlight1
+    	});
+    }
+
+    function onEachFeature2(feature, layer) {
+    	layer.on({
+    		mouseover: highlightFeature,
+    		mouseout: resetHighlight2
+    	});
+    }
+
+    function onEachFeature3(feature, layer) {
+    	layer.on({
+    		mouseover: highlightFeature,
+    		mouseout: resetHighlight3
     	});
     }
 	
     // Reset the color after hovering over
-   	function resetHighlight(e) {
+   	function resetHighlight1(e) {
     	nisppartiesLayer.resetStyle(e.target);
     	info.update();
-    } 	
+    }
+
+    // Reset the color after hovering over
+   	function resetHighlight2(e) {
+    	nispreservoirsLayer.resetStyle(e.target);
+    	info.update();
+    } 	 	
+
+    // Reset the color after hovering over
+   	function resetHighlight3(e) {
+    	nispcanalsLayer.resetStyle(e.target);
+    	info.update();
+    } 	 	
 
    	// Return function that need to be accessed by the DOM 
 	return{
