@@ -69,7 +69,16 @@ runWebServer () {
 # Main entry point into script
 
 # Change to the website files
-cd ../site
-# Run the web server
+if [ "$1" == "" ]
+        then
+        # Development files are in the ../site folder
+        echo "Serving development site files"
+        cd ../site
+else
+        # Files ready for upload
+        echo "Serving packaged upload site files"
+        cd tmp-build
+fi
+
 runWebServer
 exit 0
