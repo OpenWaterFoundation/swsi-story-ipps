@@ -73,6 +73,11 @@ iframe {
 	overflow:auto;
 }
 
+.text-right-custom a:link, a:hover{
+	color:black;
+	text-decoration:underline;
+}
+
 /* width */
 .custom-scroll::-webkit-scrollbar {
     width: 10px;
@@ -99,6 +104,11 @@ iframe {
 	padding-left:50px!important;
 	max-height:80vh;
 	overflow:auto;
+}
+
+.text-left-custom a:link, a:hover{
+	color:black;
+	text-decoration:underline;
 }
 
 .text-image-overlay{
