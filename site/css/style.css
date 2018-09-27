@@ -73,9 +73,9 @@ iframe {
 	overflow:auto;
 }
 
-.text-right-custom a:link, a:hover{
+.text-left-custom a{
 	color:black;
-	text-decoration:underline;
+	text-decoration: underline;
 }
 
 /* width */
@@ -98,6 +98,11 @@ iframe {
     background: #555; 
 }
 
+.image-text a{
+	color:black;
+	text-decoration: underline;
+}
+
 .text-left-custom{
 	/*padding:100px; */
 	padding-right:25px!important;
@@ -106,9 +111,9 @@ iframe {
 	overflow:auto;
 }
 
-.text-left-custom a:link, a:hover{
+.text-left-custom a{
 	color:black;
-	text-decoration:underline;
+	text-decoration: underline;
 }
 
 .text-image-overlay{
