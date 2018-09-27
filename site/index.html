@@ -133,6 +133,9 @@
             <li class="nav-item">
               <a class="nav-link" href="#resources">Resources</a>
             </li>           
+            <li class="nav-item">
+              <a class="nav-link" href="#instructions">Instructions</a>
+            </li>           			
           </ul>
         </div>
       </div>
@@ -153,6 +156,7 @@
               <p>IPPs are expected to help address the water supply gap identified in the 
                 Statewide Water Supply Initiative (SWSI), Basin Implementation Plan (BIP) and Colorado Water Plan (CWP).</p>
               <p>This story also highlights a few IPPs in greater detail.</p>
+			  <p style="font-size:18px;"><i>See the <a href="#instructions">Instructions</a> page for how to view this story.</i></p>			  
             </div>
           </div>
         </div>
@@ -596,6 +600,38 @@
           </div>  
       </div>  
 
+      <!-- PAGE 16 -->
+      <!-- Instructions -->
+	  
+	  <div class="section">
+        <div class="container text-center blue-bkgd-text">
+              <h2>Instructions</h2>
+			  <p style="text-align:left;">This story is designed to provide information in one-page sections, each of which should fit within the web browser page.  To move forward 
+			  or backward in the story, use the following options:</p>
+			  <ul>
+			    <li style="text-align:left;">Page Up and Page Down keys</li>
+			    <li style="text-align:left;">Arrow Up and Arrow Down keys</li>				
+				<li style="text-align:left;">Mouse scroll wheel - a slight turn will advance the page automatically</li>
+				<li style="text-align:left;">Menu at the top of the story to navigate to major sections</li>
+				<li style="text-align:left;">Click on the dots on the right side of the screen - hover over a dot to see the title of the page</li>
+			  </ul>	
+			  <p style="text-align:left;">Additional instructions for viewing the story include:</p>
+			  <ul>
+			    <li style="text-align:left;">The content is best viewed on a relatively large display and has not been optimized for mobile devices</li>
+				<li style="text-align:left;">If content does not seem to fit in the browser window, use Ctrl - to reduce font sizes and Ctrl + to increase font sizes</li>
+				<li style="text-align:left;">For interactive maps, the default behavior for the mouse scroll is to advance the story page.  Click on the mouse 
+				icon in the map to change mouse scrolling to zoom behavior.  Once changed, the behavior will apply only to the specific map</li>
+				<li style="text-align:left;">Interactive maps can be repositioned by holding the left mouse button and dragging the map</li>
+				<li style="text-align:left;">Scrollable text areas are provided in some pages and can be scrolled by dragging the scroll bar</li>
+				<li style="text-align:left;">External pages are indicated with a <img src="images/baseline_launch_white_18dp.png" width="12px"/> graphic</li>
+				<li style="text-align:left;">Links to external pages are generally the same font color as normal text but are indicated with underlines</li>
+				<li style="text-align:left;">Visualizations that will slow down the story are linked to as separate pages.  Mouse over the image to see 
+				a popup link</li>
+				<li style="text-align:left;">Interactive maps provide popups to view data.  If the popup flashes, drag the map to reposition it so that 
+				the popup does not occur in the same area as the map instruction box</li>			  
+        </div>	
+      </div>	  
+	  
       </div>    
     </div>
   </body>
@@ -609,11 +645,12 @@
     $(document).ready(function() {
       $('#fullpage').fullpage({
         licenseKey: "OPEN-SOURCE-GPLV3-LICENSE",
-        anchors:['top','swsi2004','swsi2010mandi', 'swsi2010eandr', 'mandi', 'ag', 'eandr', 'ippupdate', 'ippmap1', 'ippmap2', 'ippmap3', 'exampleipp1', 'exampleipp2', 'resources', 'sources'],
-        sectionsColor:['#386981','#c3c5bf','#c3c5bf','#c3c5bf','#9DB66B','#fef0d9','#009dbe','#c3c5bf','#c3c5bf','#c3c5bf','#c3c5bf','#c3c5bf','#c3c5bf','#386981','#386981'],
+        anchors:['top','swsi2004','swsi2010mandi', 'swsi2010eandr', 'mandi', 'ag', 'eandr', 'ippupdate', 'ippmap1', 'ippmap2', 'ippmap3', 'exampleipp1', 'exampleipp2', 'resources', 'sources', 'instructions'],
+        sectionsColor:['#386981','#c3c5bf','#c3c5bf','#c3c5bf','#9DB66B','#fef0d9','#009dbe','#c3c5bf','#c3c5bf','#c3c5bf','#c3c5bf','#c3c5bf','#c3c5bf','#386981','#386981','#386981'],
         navigation:true,
         navigationPosition:'right',
-        navigationTooltips:['South Platte and Metro Basin IPPs','SWSI 2004','SWSI 2010 M&I IPPs', 'SWSI 2010 E&R IPPs','M&I IPPs','Ag IPPs','E&R IPPs', 'IPP Update', 'IPPs by Location Flag', 'IPPs by Basin and Yield', 'IPPs by Basin and Cost', 'Example IPP: NISP', 'Example IPP:ACWWA Flow Project', 'Resources', 'Sources'],
+        navigationTooltips:['South Platte and Metro Basin IPPs','SWSI 2004','SWSI 2010 M&I IPPs', 'SWSI 2010 E&R IPPs','M&I IPPs','Ag IPPs','E&R IPPs', 'IPP Update', 'IPPs by Location Flag', 
+		'IPPs by Basin and Yield', 'IPPs by Basin and Cost', 'Example IPP: NISP', 'Example IPP:ACWWA Flow Project', 'Resources', 'Sources', 'Instructions'],
         recordHistory:false,
         menu:"#navbarResponsive",
         paddingTop:'75px'
